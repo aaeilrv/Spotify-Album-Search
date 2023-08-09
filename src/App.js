@@ -3,9 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, InputGroup, FormControl, Button, Row, Card } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
-const CLIENT_ID = '4e32afb82496403493823ba5b2e5924b';
-const CLIENT_SECRET = '10affba7fd3c4bda9e71a90bee3b486a';
-
 function App() {
 
   const [searchInput, setSearchInput] = useState("");
@@ -19,7 +16,7 @@ function App() {
       headers: {
         'Content-Type' : 'application/x-www-form-urlencoded'
       },
-      body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
+      body: 'grant_type=client_credentials&client_id=' + process.env.REACT_APP_CLIENT_ID + '&client_secret=' + process.env.REACT_APP_CLIENT_SECRET
     }
     fetch('https://accounts.spotify.com/api/token', authParameters)
       .then(result => result.json())
